@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather+Sans&display=swap');
+
+.message{
+    padding: 10px;
+    color: white;
+    border-radius: 30px;
+    margin: 10px;
+    font-family: 'Merriweather Sans';
+}
+.message p{
+    margin-left: 5px;
+}
+.chat-window{
+    padding: 5px 0;
+}
+.footer{
+    position: fixed;
+    top: 90vh;
+    height: 10vh;
+    width: 100vw;
+    background-color: rgba(18,21,42,10%);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0 10px;
+}
+.footer-form{
+    width: 100%;
+
+}
+.footer-form input{
+    width: 93%;
+    height: 30px;
+    border-radius: 25px;
+    border: solid 3px #078500;
+    padding: 5px;
+    opacity: 100%;
+    font-family: "Merriweather Sans";
+}
