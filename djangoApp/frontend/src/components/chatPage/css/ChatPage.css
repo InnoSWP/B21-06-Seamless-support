@@ -15,8 +15,8 @@
 }
 .footer{
     position: fixed;
-    top: 90vh;
-    height: 10vh;
+    top: 92vh;
+    height: 8vh;
     width: 100vw;
     background-color: rgba(18,21,42,10%);
     display: flex;
@@ -33,14 +33,15 @@
     height: 30px;
     border-radius: 25px;
     border: solid 3px #078500;
-    padding: 5px;
+    padding: 2px 15px;
     opacity: 100%;
     font-family: "Merriweather Sans";
+    font-size: 15px;
 }
 .footer-form button{
     border: 0 solid ;
     background-color: rgba(0,0,0,0%);
-    margin-left: 20px;
+    margin-left: 10px;
 }
 .footer-form button svg{
     fill: #078500;
