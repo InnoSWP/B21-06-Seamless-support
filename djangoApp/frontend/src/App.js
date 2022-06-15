@@ -8,7 +8,7 @@ function App() {
 
   return (
     <div className="App">
-      <ChatPage></ChatPage>
+      <ChatPage user_id = {101}/>
     </div>
   );
 }

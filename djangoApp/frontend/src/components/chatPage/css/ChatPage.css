@@ -11,17 +11,18 @@
     margin-left: 5px;
 }
 .chat-window{
-    padding: 5px 0;
+    padding: 8vh 0;
 }
 .footer{
     position: fixed;
     top: 92vh;
     height: 8vh;
     width: 100vw;
-    background-color: rgba(18,21,42,10%);
+    background-color: #ECECEC;
     display: flex;
     flex-direction: row;
     padding: 0 10px;
+    z-index: 10;
 }
 .footer-form{
     width: 100%;
