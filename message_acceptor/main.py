@@ -17,6 +17,26 @@ USER_QUESTION = "Как оплатить заказ?"
 
 # по команде /example запускатеся работа бота с дефолтными данными
 
+def forward_to_user(update, context):
+    user_id = None
+    if update.message.reply_to_message.forward_from:
+        user_id = update.message.reply_to_message.forward_from.id
+    # elif REPLY_TO_THIS_MESSAGE in update.message.reply_to_message.text:
+    #     try:
+    #         user_id = int(update.message.reply_to_message.text.split('\n')[0])
+    #     except ValueError:
+    #         user_id = None
+    if user_id:
+        context.bot.copy_message(
+            message_id=update.message.message_id,
+            chat_id=user_id,
+            from_chat_id=update.message.chat_id
+        )
+    else:
+        context.bot.send_message(
+            chat_id=-799113402,
+            text="WRONG_REPLY"
+        )
 
 @dp.message_handler(commands="example")
 async def cmd_random(message: types.Message):
@@ -49,6 +69,8 @@ async def send_random_value(call: types.CallbackQuery):
         await call.message.delete()
 
         # TODO: тут нужно прописать как происходит отправка ответа пользователю/в бд
+
+        forward_to_user()
 
     await call.message.delete()
 
