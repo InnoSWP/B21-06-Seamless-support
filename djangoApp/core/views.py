@@ -6,6 +6,8 @@ from .serializer import MessageSerializer
 from .serializer import AnswerSerializer
 from .models import Message
 from .models import Answer
+
+
 # Create your views here.
 
 
@@ -21,18 +23,22 @@ answers = [
     {
         Answer(id='120', answer='Tomorrow.')
     },
-    ]
+]
 
 
-@api_view(['GET', 'POST'])
+@api_view(['GET'])
+def send_message(request):
+    if answers.count() != 0:
+        ans = answers[0]
+        answers.pop(0)
+        serializer = AnswerSerializer(ans, many=False)
+        return Response(serializer.data)
+
+
+@api_view(['POST'])
 def receive_message(request):
-
-    if request.method == 'GET':
-        if answers.count() != 0:
-            ans = answers[0]
-            answers.pop(0)
-            serializer = AnswerSerializer(ans, many=False)
-            return Response(serializer.data)
-
-    elif request.method == 'POST':
-        answers.append(request.data)
+    serializer = AnswerSerializer(request.data)
+    if serializer.is_valid():
+        serializer.save()
+    answers.append(serializer.data)
+    receive_message()

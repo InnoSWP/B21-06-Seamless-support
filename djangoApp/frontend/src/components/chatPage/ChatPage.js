@@ -19,7 +19,7 @@ const ChatPage = (props) =>{
     const getMessages = () =>{
         axios({
                 method: 'GET',
-                url: '/messages/',
+                url: 'messages/',
                 params: {
                     id: user_id
                 }
@@ -38,7 +38,7 @@ const ChatPage = (props) =>{
         console.log(str);
         axios({
                 method: 'POST',
-                url: '/send/',
+                url: 'send/',
                 data: {
                     user_id: user_id,
                     question: str

@@ -15,10 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import front, receive_message
+from core.views import front, receive_message, send_message
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("", front, name="front"),
-    path('send/', receive_message, name='send')
+    path('send/', receive_message, name='send'),
+    path('messages/', send_message, name='receive')
 ]
