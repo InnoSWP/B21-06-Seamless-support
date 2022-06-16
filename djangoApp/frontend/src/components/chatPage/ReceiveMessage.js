@@ -2,7 +2,7 @@ import React from "react";
 
 const ReceiveMessage = (props) =>{
     return(
-        <div className={'message'} style={{width: props.wid, backgroundColor: '#12152a',position: "relative", left: '10px'}}>
+        <div className={'message'} style={{width: props.wid, backgroundColor: '#12152a'}}>
             <p>{props.what}</p>
         </div>
     );
