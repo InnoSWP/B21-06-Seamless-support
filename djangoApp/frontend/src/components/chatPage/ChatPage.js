@@ -7,7 +7,7 @@ import Footer from "./Footer";
 import './css/ChatPage.css'
 import axios from "axios";
 
-const ChatPage = (props) =>{
+const ChatPage = (props) => {
 
     const [messages, setMessages] = useState([]); //The list of messages
     const user_id = props.user_id; //User_id got from Auth page
@@ -16,7 +16,7 @@ const ChatPage = (props) =>{
     //     getMessages()
     // },[])
 
-    const getMessages = () =>{
+    const getMessages = () => {
         axios({
                 method: 'GET',
                 url: 'send/',
@@ -25,10 +25,12 @@ const ChatPage = (props) =>{
             const data = response.data;
             console.log(data);
             const msg = {
-                from: data[0].vol_id,
-                what: data[0].answer
+                from: data.vol_id,
+                what: data.answer
             }
-            setMessages(messages => [...messages, msg]);
+            console.log(msg);
+            if (msg.what != '')
+                setMessages(messages => [...messages, msg]);
         }).catch((error) => {
             console.log(error.response);
             console.log(error.response.status);
@@ -37,7 +39,8 @@ const ChatPage = (props) =>{
     }
 
     const sendMessage = (str) => {
-        if(str == '')return;
+        getMessages();
+        if (str == '') return;
         console.log(str);
         axios({
                 method: 'POST',
@@ -49,31 +52,30 @@ const ChatPage = (props) =>{
             }
         )
         setMessages(messages => [...messages, {from: user_id, what: str, key: messages.length + 1}]);
-        getMessages();
     }
     const chat = messages.map(
-        (message) =>{
+        (message) => {
             console.log(message);
-            let len = Math.ceil(message.what.length/2);
+            let len = Math.ceil(message.what.length / 2);
             len = Math.max(len, 9);
             len = Math.min(len, 40);
             const offset = 97 - len + '%';
             len += '%'
-            if(message.from === user_id){
-                return <SendMessage key = {message.key} what = {message.what} wid = {len} offset = {offset}/>
+            if (message.from === user_id) {
+                return <SendMessage key={message.key} what={message.what} wid={len} offset={offset}/>
             }
-            return <ReceiveMessage key = {message.key} what = {message.what} wid = {len}/>
+            return <ReceiveMessage key={message.key} what={message.what} wid={len}/>
         }
     )
 
-    setInterval(getMessages, 5000);
+    setInterval(getMessages, 8000);
 
     return (
-      <div className={'chat-page'}>
-          <BackHeader/>
-          <div className={'chat-window'}> {chat}</div>
-          <Footer onSend = {sendMessage}/>
-      </div>
+        <div className={'chat-page'}>
+            <BackHeader/>
+            <div className={'chat-window'}> {chat}</div>
+            <Footer onSend={sendMessage}/>
+        </div>
     );
 }
 

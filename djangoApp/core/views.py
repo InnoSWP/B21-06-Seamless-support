@@ -37,9 +37,10 @@ def send_message(request):
             answers.pop(0)
             serializer = AnswerSerializer(ans, many=True)
             return Response(serializer.data)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        data = AnswerSerializer(Answer(id=-1, vol_id='120', answer='')).data
+        return Response(data)
     elif request.method == 'POST':
-        serializer = AnswerSerializer(data=request.data)
+        serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)
