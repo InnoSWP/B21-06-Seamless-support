@@ -19,22 +19,25 @@ const ChatPage = (props) =>{
     const getMessages = () =>{
         axios({
                 method: 'GET',
-                url: 'messages/',
-                params: {
-                    id: user_id
-                }
+                url: 'send/',
             }
         ).then((response) => {
             const data = response.data;
-            setMessages([...messages,data]);
+            console.log(data);
+            const msg = {
+                from: data[0].vol_id,
+                what: data[0].answer
+            }
+            setMessages(messages => [...messages, msg]);
         }).catch((error) => {
             console.log(error.response);
             console.log(error.response.status);
             console.log(error.response.headers);
         })
-    } //Getting the
+    }
 
     const sendMessage = (str) => {
+        if(str == '')return;
         console.log(str);
         axios({
                 method: 'POST',
@@ -45,11 +48,12 @@ const ChatPage = (props) =>{
                 }
             }
         )
-
-        setMessages([...messages, {from: user_id, what: str, key: messages.length + 1}]);
+        setMessages(messages => [...messages, {from: user_id, what: str, key: messages.length + 1}]);
+        getMessages();
     }
     const chat = messages.map(
         (message) =>{
+            console.log(message);
             let len = Math.ceil(message.what.length/2);
             len = Math.max(len, 9);
             len = Math.min(len, 40);
@@ -61,6 +65,9 @@ const ChatPage = (props) =>{
             return <ReceiveMessage key = {message.key} what = {message.what} wid = {len}/>
         }
     )
+
+    setInterval(getMessages, 5000);
+
     return (
       <div className={'chat-page'}>
           <BackHeader/>
