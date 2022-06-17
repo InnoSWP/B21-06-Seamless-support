@@ -4,7 +4,6 @@ const Footer = (props) => {
     const sendHandler = (event) =>{
         const question = document.getElementById('user_input').value.toString();
         document.getElementById('user_input').value = '';
-        console.log(question);
         props.onSend(question);
         event.preventDefault();
     }

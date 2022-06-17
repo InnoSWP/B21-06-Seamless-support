@@ -18,6 +18,9 @@ def front(request):
 
 answers = [
     {
+        Answer(id=999, vol_id='0', answer='-')
+    },
+    {
         Answer(id=1, vol_id='120', answer='Yes.')
     },
     {
@@ -32,14 +35,16 @@ answers = [
 @api_view(['GET', 'POST'])
 def send_message(request):
     if request.method == 'GET':
-        if len(answers) != 0:
-            ans = answers[0]
-            answers.pop(0)
+        if len(answers) > 1:
+            ans = answers[1]
+            answers.pop(1)
             serializer = AnswerSerializer(ans, many=True)
             return Response(serializer.data)
-        return Response(status=status.HTTP_404_NOT_FOUND)
+        ans = answers[0]
+        serializer = AnswerSerializer(ans, many=True)
+        return Response(serializer.data)
     elif request.method == 'POST':
-        serializer = AnswerSerializer(data=request.data)
+        serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(status=status.HTTP_201_CREATED)

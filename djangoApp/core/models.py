@@ -16,4 +16,4 @@ class Answer (models.Model):
     answer = models.CharField(max_length=250)
 
     def __str__(self):
-        return self.vol_id
+        return self.answer
