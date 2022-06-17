@@ -34,10 +34,10 @@ def send_message(request):
     if request.method == 'GET':
         if len(answers) != 0:
             ans = answers[0]
-            answers.pop(0)
+            # answers.pop(0)
             serializer = AnswerSerializer(ans, many=True)
             return Response(serializer.data)
-        data = AnswerSerializer(Answer(id=-1, vol_id='120', answer='')).data
+        data = AnswerSerializer(Answer(vol_id='120', answer='')).data
         return Response(data)
     elif request.method == 'POST':
         serializer = MessageSerializer(data=request.data)

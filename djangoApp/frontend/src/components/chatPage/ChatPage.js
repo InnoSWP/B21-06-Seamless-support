@@ -22,12 +22,14 @@ const ChatPage = (props) => {
                 url: 'send/',
             }
         ).then((response) => {
-            const data = response.data;
+            const data = JSON.parse(response.data);
             console.log(data);
+            console.log(data.vol_id);
             const msg = {
                 from: data.vol_id,
                 what: data.answer
             }
+
             console.log(msg);
             if (msg.what != '')
                 setMessages(messages => [...messages, msg]);
@@ -36,7 +38,10 @@ const ChatPage = (props) => {
             console.log(error.response.status);
             console.log(error.response.headers);
         })
+        clearInterval(k);
     }
+
+    let k = setTimeout(getMessages, 8000);
 
     const sendMessage = (str) => {
         getMessages();
@@ -67,8 +72,6 @@ const ChatPage = (props) => {
             return <ReceiveMessage key={message.key} what={message.what} wid={len}/>
         }
     )
-
-    setInterval(getMessages, 8000);
 
     return (
         <div className={'chat-page'}>
