@@ -1,14 +1,16 @@
-import chatPage from "./components/chatPage/ChatPage";
-
-import './App.css';
+import "./index.css";
+//
+// import logo from "./logo.svg";
+import "./App.css";
+import React from "react";
+import MainPage from "./components/mainPage/MainPage";
 import ChatPage from "./components/chatPage/ChatPage";
 
+const App = () => {
 
-function App() {
-
-  return (
+   return (
     <div className="App">
-      <ChatPage user_id = {101}/>
+      <ChatPage user_id = {'101'}/>
     </div>
   );
 }

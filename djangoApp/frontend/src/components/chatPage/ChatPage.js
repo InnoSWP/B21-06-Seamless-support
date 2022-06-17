@@ -12,14 +12,17 @@ const ChatPage = (props) => {
     const [messages, setMessages] = useState([]); //The list of messages
     const user_id = props.user_id; //User_id got from Auth page
 
-    // useEffect(()=>{
-    //     getMessages()
-    // },[])
+    useEffect(()=>{
+        getMessages()
+    },[])
 
     const getMessages = () => {
         axios({
                 method: 'GET',
-                url: 'send/',
+                url: '/messages/',
+                params: {
+                    id: user_id
+                }
             }
         ).then((response) => {
             const data = JSON.parse(response.data);
@@ -72,13 +75,12 @@ const ChatPage = (props) => {
             return <ReceiveMessage key={message.key} what={message.what} wid={len}/>
         }
     )
-
     return (
-        <div className={'chat-page'}>
-            <BackHeader/>
-            <div className={'chat-window'}> {chat}</div>
-            <Footer onSend={sendMessage}/>
-        </div>
+      <div className={'chat-page'}>
+          <BackHeader/>
+          <div className={'chat-window'}> {chat}</div>
+          <Footer/>
+      </div>
     );
 }
 

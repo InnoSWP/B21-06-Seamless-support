@@ -6,6 +6,7 @@ from .serializer import MessageSerializer
 from .serializer import AnswerSerializer
 from .models import Message
 from .models import Answer
+from .telegram_bot import bot_message
 
 
 # Create your views here.
@@ -17,22 +18,18 @@ def front(request):
 
 
 answers = [
-    {
-        Answer(id=1, vol_id='120', answer='Yes.')
-    },
-    {
-        Answer(id=2, vol_id='120', answer='Tomorrow.')
-    },
-    {
-        Answer(id=3, vol_id='120', answer='Ya spat!')
-    },
+
+]
+questions = [
+
 ]
 
 
 @api_view(['GET', 'POST'])
 def send_message(request):
     if request.method == 'GET':
-        if len(answers) != 0:
+        print(len(answers))
+        if len(answers) > 0:
             ans = answers[0]
             # answers.pop(0)
             serializer = AnswerSerializer(ans, many=True)
@@ -40,8 +37,14 @@ def send_message(request):
         data = AnswerSerializer(Answer(vol_id='120', answer='')).data
         return Response(data)
     elif request.method == 'POST':
-        serializer = MessageSerializer(data=request.data)
+        serializer = MessageSerializer(data=request.data, many=False)
+        print(request.data)
+        print(serializer)
+        questions.append(request.data)
+        print(questions[0]["question"])
         if serializer.is_valid():
             serializer.save()
+            if len(questions) > 0:
+                bot_message(questions[0]["question"])
             return Response(status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
