@@ -5,7 +5,7 @@
     color: white;
     border-radius: 30px;
     margin: 10px;
-    font-family: 'Merriweather Sans';
+    font-family: 'Merriweather Sans', serif;
 }
 .message p{
     margin-left: 5px;
@@ -38,7 +38,7 @@
     border: solid 3px #078500;
     padding: 2px 15px;
     opacity: 100%;
-    font-family: "Merriweather Sans";
+    font-family: "Merriweather Sans", serif;
     font-size: 15px;
 }
 .footer-form button{
