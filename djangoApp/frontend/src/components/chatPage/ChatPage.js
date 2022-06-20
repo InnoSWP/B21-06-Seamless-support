@@ -14,7 +14,7 @@ const ChatPage = (props) => {
 
     useEffect(() => {
         let interval = setInterval(() => {
-            const res = getMessages();
+            getMessages();
         }, 5000);
         return () => {
             clearInterval(interval);
@@ -45,7 +45,7 @@ const ChatPage = (props) => {
     }
 
     const sendMessage = (str) => {
-        if (str == '') return;
+        if (str === '') return;
         axios({
                 method: 'POST',
                 url: 'send/',
