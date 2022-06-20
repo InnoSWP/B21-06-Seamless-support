@@ -34,7 +34,7 @@ const ChatPage = (props) => {
             }
             console.log(msg);
             if (msg.what !== '-'){
-                setMessages(messages => [...messages,msg]);
+                setMessages((messages) => {return [...messages,msg];});
             }
         }).catch((error) => {
             console.log(error.response);
@@ -55,7 +55,7 @@ const ChatPage = (props) => {
                 }
             }
         )
-        setMessages(messages => [...messages, {from: me, what: str, key: messages.length + 1}]);
+        setMessages((messages) => {return [...messages,{from: me, what: str, key: messages.length + 1}];});
     }
     const chat = messages.map(
         (message) => {
