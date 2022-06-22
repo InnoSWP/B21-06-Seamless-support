@@ -5,17 +5,20 @@ from random import randint
 from datetime import datetime, timedelta
 from aiogram.utils.callback_data import CallbackData
 from aiogram import Bot, Dispatcher, executor, types, filters
-from djangoApp.core.views import add_answers
 from aiogram.types import ReplyKeyboardRemove, \
     ReplyKeyboardMarkup, KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton, Update
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoApp.settings')
+import django
+django.setup()
+from core.views import add_answers
 
 import config
 
 bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
-
 
 @dp.message_handler(commands='get_questions')
 async def cmd_random(message: types.Message):
@@ -37,7 +40,7 @@ async def get_answers(message: types.Message):
     f.write(str(message.from_user.id) + ':')
     f.write(message.text+'\n')
     f.close()
-    add_answers(message=message.text, vol_id=message.from_user.id)
+    add_answers(message=message.text, vol_id=str(message.from_user.id))
 
 
 @dp.callback_query_handler(text="accept")
@@ -68,9 +71,9 @@ async def send_random_value(call: types.CallbackQuery):
     async def finish_help(call: types.CallbackQuery):
         await bot.send_message(volunteer_id, "Ваш ответ отправлен\nСпасибо!")
 
-        file_answer = open("answer.txt", "w")
+        file_answer = open("../answer.txt", "a")
 
-        answer_help = call.data.split(":")
+        file_answer.write()
 
         file_answer.write("answer_help")
         file_answer.close()

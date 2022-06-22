@@ -10,12 +10,6 @@ import os
 
 # Create your views here.
 
-
-def front(request):
-    context = {}
-    return render(request, "index.html", context)
-
-
 answers = [
     {
         Answer(id=999, vol_id='0', answer='-')
@@ -30,6 +24,10 @@ answers = [
         Answer(id=3, vol_id='120', answer='Ya spat!')
     },
 ]
+
+def front(request):
+    context = {}
+    return render(request, "index.html", context)
 
 
 @api_view(['GET', 'POST'])
@@ -54,6 +52,6 @@ def send_message(request):
 
 
 def add_answers(message, vol_id):
-    print(message)
+    answers.append(Answer(vol_id=vol_id, answer=message))
     #khffskjdfhdkshjsdh BLAH BLAH BLAH
 
