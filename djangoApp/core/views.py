@@ -46,9 +46,12 @@ def send_message(request):
     elif request.method == 'POST':
         serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
-            f = open('file.txt', 'w')
+            f = open('../file.txt', 'w')
             f.write(serializer.validated_data['user_id'] + '\n')
             f.write(serializer.validated_data['question'])
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
+def add_answer(vol_id, text):
+    answers.append(Answer(vol_id=vol_id, answer=text))
