@@ -6,7 +6,7 @@ from .serializer import MessageSerializer
 from .serializer import AnswerSerializer
 from .models import Message
 from .models import Answer
-
+import os
 
 # Create your views here.
 
@@ -53,5 +53,7 @@ def send_message(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-def add_answer(vol_id, text):
-    answers.append(Answer(vol_id=vol_id, answer=text))
+def add_answers(message, vol_id):
+    print(message)
+    #khffskjdfhdkshjsdh BLAH BLAH BLAH
+

@@ -4,9 +4,8 @@ import os
 from random import randint
 from datetime import datetime, timedelta
 from aiogram.utils.callback_data import CallbackData
-from djangoApp.core.views import add_answer
 from aiogram import Bot, Dispatcher, executor, types, filters
-
+from djangoApp.core.views import add_answers
 from aiogram.types import ReplyKeyboardRemove, \
     ReplyKeyboardMarkup, KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton, Update
@@ -25,7 +24,6 @@ async def cmd_random(message: types.Message):
     USER_QUESTION = f.readline()
 
 
-
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton(text="Принять ✅", callback_data="accept"))
     keyboard.add(types.InlineKeyboardButton(text="Отклонить ❌", callback_data="decline"))
@@ -36,11 +34,10 @@ async def cmd_random(message: types.Message):
 @dp.message_handler()
 async def get_answers(message: types.Message):
     f = open('answer.txt', 'a')
-    f.write(str(message.from_user.id))
-    f.write('\n')
+    f.write(str(message.from_user.id) + ':')
     f.write(message.text+'\n')
     f.close()
-    add_answer(str(message.from_user.id), message.text)
+    add_answers(message=message.text, vol_id=message.from_user.id)
 
 
 @dp.callback_query_handler(text="accept")
@@ -74,7 +71,6 @@ async def send_random_value(call: types.CallbackQuery):
         file_answer = open("answer.txt", "w")
 
         answer_help = call.data.split(":")
-
 
         file_answer.write("answer_help")
         file_answer.close()
