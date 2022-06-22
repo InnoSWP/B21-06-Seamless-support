@@ -1,0 +1,60 @@
+.main-page {
+    font-family: "Montserrat", sans-serif;
+    text-align: center;
+    /* background-color: rgb(20, 195, 142); */
+    height: 100%;
+  }
+  .header-panel {
+    width: 100%;
+    padding: 15px;
+    margin: -10px 0px 30px -10px;
+    /* border-radius: 0px 0px 16px 16px; */
+    background-color: rgb(184, 241, 176);
+    box-shadow: 0px 5px rgba(0, 0, 0, 0.2);
+    background: #078500;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+  .question-form {
+    display: block;
+    padding: 15px;
+    /* background-color: rgb(184, 241, 176); */
+    border-radius: 16px 16px 16px 16px;
+    display: flex;
+    flex-direction: column;
+    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
+    transition: 0.4s ease;
+  }
+  .question-form .lable {
+    padding: 3px 5px 10px 5px;
+    color: black;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    font-family: "Comic Neue";
+    font-style: normal;
+    font-size: 25px;
+    /* text-shadow: 3px 3px rgba(50, 50, 70, 0.1); */
+  }
+  .question-form .question-box {
+    /* display: block; */
+    width: 100%;
+    /* padding: 15px;
+   */
+    font-family: "Merriweather Sans";
+    border: 2px solid #12152a;
+    border-radius: 7px;
+    appearance: none;
+    background: none;
+    /* border: none; */
+    outline: none;
+    /* background-color: rgba(255, 255, 255, 0.8); */
+    /* border-radius: 0px 0px 6px 6px; */
+    /* margin-top: -25px; */
+  
+    /* box-shadow: 0px 5px rgba(0, 0, 0, 0.2); */
+  
+    /* color: #313131; */
+    font-size: 15px;
+  
+    transition: 0.4s ease;
+  }
