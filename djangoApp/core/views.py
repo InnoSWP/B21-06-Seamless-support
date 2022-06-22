@@ -6,15 +6,9 @@ from .serializer import MessageSerializer
 from .serializer import AnswerSerializer
 from .models import Message
 from .models import Answer
-
+import os
 
 # Create your views here.
-
-
-def front(request):
-    context = {}
-    return render(request, "index.html", context)
-
 
 answers = [
     {
@@ -31,6 +25,10 @@ answers = [
     },
 ]
 
+def front(request):
+    context = {}
+    return render(request, "index.html", context)
+
 
 @api_view(['GET', 'POST'])
 def send_message(request):
@@ -46,9 +44,14 @@ def send_message(request):
     elif request.method == 'POST':
         serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
-            f = open('file.txt', 'w')
+            f = open('../file.txt', 'w')
             f.write(serializer.validated_data['user_id'] + '\n')
             f.write(serializer.validated_data['question'])
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+def add_answers(message, vol_id):
+    answers.append(Answer(vol_id=vol_id, answer=message))
+    #khffskjdfhdkshjsdh BLAH BLAH BLAH
 

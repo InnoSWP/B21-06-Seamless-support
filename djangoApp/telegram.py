@@ -4,12 +4,15 @@ import os
 from random import randint
 from datetime import datetime, timedelta
 from aiogram.utils.callback_data import CallbackData
-
 from aiogram import Bot, Dispatcher, executor, types, filters
-
 from aiogram.types import ReplyKeyboardRemove, \
     ReplyKeyboardMarkup, KeyboardButton, \
     InlineKeyboardMarkup, InlineKeyboardButton, Update
+import os
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoApp.settings')
+import django
+django.setup()
+from core.views import add_answers
 
 import config
 
@@ -17,16 +20,11 @@ bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
 
-
-
-
-
-@dp.message_handler()
+@dp.message_handler(commands='get_questions')
 async def cmd_random(message: types.Message):
     f = open("file.txt", "r")
     USER_NAME = f.readline()
     USER_QUESTION = f.readline()
-
 
 
     keyboard = types.InlineKeyboardMarkup()
@@ -36,38 +34,46 @@ async def cmd_random(message: types.Message):
     f.close()
 
 
+@dp.message_handler()
+async def get_answers(message: types.Message):
+    f = open('answer.txt', 'a')
+    f.write(str(message.from_user.id) + ':')
+    f.write(message.text+'\n')
+    f.close()
+    add_answers(message=message.text, vol_id=str(message.from_user.id))
+
+
 @dp.callback_query_handler(text="accept")
 async def send_random_value(call: types.CallbackQuery):
-    f = open("file.txt", "r")
+    f = open("answer.txt", "r")
     USER_NAME = f.readline()
     USER_QUESTION = f.readline()
 
-    volounteer_id = call.from_user.id
-    volounteer_name = call.from_user.first_name
+    volunteer_id = call.from_user.id
+    volunteer_name = call.from_user.first_name
 
 
-    await call.message.answer("Вопрос был принят " + volounteer_name)
-    await bot.send_message(volounteer_id, "Вопрос от " + USER_NAME + "\n" + USER_QUESTION)
+    await call.message.answer("Вопрос был принят " + volunteer_name)
+    await bot.send_message(volunteer_id, "Вопрос от " + USER_NAME + "\n" + USER_QUESTION)
 
     f.close()
 
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton(text="Начать помогать", callback_data="start"))
     keyboard.add(types.InlineKeyboardButton(text="Закончить помогать", callback_data="finish"))
-    await bot.send_message(volounteer_id, "Выберите действие", reply_markup=keyboard)
+    await bot.send_message(volunteer_id, "Выберите действие", reply_markup=keyboard)
 
     @dp.callback_query_handler(text="start")
     async def start_help(call: types.CallbackQuery):
-        await bot.send_message(volounteer_id, "Напишите решение проблемы")
+        await bot.send_message(volunteer_id, "Напишите решение проблемы")
 
     @dp.callback_query_handler(text="finish")
     async def finish_help(call: types.CallbackQuery):
-        await bot.send_message(volounteer_id, "Ваш ответ отправлен\nСпасибо!")
+        await bot.send_message(volunteer_id, "Ваш ответ отправлен\nСпасибо!")
 
-        file_answer = open("answer.txt", "w")
+        file_answer = open("../answer.txt", "a")
 
-        answer_help = call.data.split(":")
-
+        file_answer.write()
 
         file_answer.write("answer_help")
         file_answer.close()
@@ -80,8 +86,8 @@ async def send_random_value(call: types.CallbackQuery):
 
 @dp.callback_query_handler(text="decline")
 async def send_random_value(call: types.CallbackQuery):
-    volounteer_name = call.from_user.first_name
-    await call.message.answer("Вопрос был отклонен " + volounteer_name)
+    volunteer_name = call.from_user.first_name
+    await call.message.answer("Вопрос был отклонен " + volunteer_name)
 
 
 executor.start_polling(dp, skip_updates=True)
