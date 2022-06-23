@@ -17,6 +17,7 @@ answers = [
 
 ]
 
+
 def front(request):
     context = {}
     return render(request, "index.html", context)
@@ -37,7 +38,7 @@ def send_message(request):
     elif request.method == 'POST':
         serializer = MessageSerializer(data=request.data)
         if serializer.is_valid():
-            f = open('file.txt', 'w')
+            f = open('djangoApp/file.txt', 'w')
             f.write(serializer.validated_data['user_id'] + '\n')
             f.write(serializer.validated_data['question'])
             return Response(status=status.HTTP_201_CREATED)
@@ -45,11 +46,11 @@ def send_message(request):
 
 
 def get_answers():
-    f = open('answer.txt', 'r')
+    f = open('djangoApp/answer.txt', 'r')
     ans = f.readline()
     if ans != '':
         answers.append({Answer(id=len(answers)+1, vol_id='120', answer=ans)})
     f.close()
-    open('answer.txt', 'w').close()
+    open('djangoApp/answer.txt', 'w').close()
     print(answers)
 
