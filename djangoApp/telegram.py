@@ -79,7 +79,7 @@ async def send_random_value(call: types.CallbackQuery):
         # add_answers(message=message.text, vol_id=str(message.from_user.id))
 
 
-@dp.callback_query_handler_dec(text="decline")
+@dp.callback_query_handler(text="decline")
 async def send_random_value_dec(call: types.CallbackQuery):
     volounteer_name = call.from_user.first_name
     await call.message.answer("Вопрос был отклонен " + volounteer_name)
