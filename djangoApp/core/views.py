@@ -1,5 +1,3 @@
-import os
-
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -46,7 +44,7 @@ def get_answers():
     f = open("./answer.txt", "r")
     ans = f.readline()
     if ans != "":
-        answers.append({Answer(id=len(answers)+1, vol_id='120', answer=ans)})
+        answers.append({Answer(id=len(answers)+1, vol_id="120", answer=ans)})
     f.close()
     open("./answer.txt", "w").close()
     print(answers)

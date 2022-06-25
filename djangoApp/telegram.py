@@ -1,9 +1,10 @@
 import asyncio
 import logging
 import os
-from random import randint
 from datetime import datetime, timedelta
-from aiogram import Bot, Dispatcher, executor, types, filters
+from random import randint
+
+from aiogram import Bot, Dispatcher, executor, filters, types
 from aiogram.types import (
     InlineKeyboardButton,
     InlineKeyboardMarkup,
@@ -91,7 +92,7 @@ async def send_random_value(call: types.CallbackQuery):
 
 
 @dp.callback_query_handler_dec(text="decline")
-async def send_random_value(call: types.CallbackQuery):
+async def send_random_value_dec(call: types.CallbackQuery):
     volounteer_name = call.from_user.first_name
     await call.message.answer("Вопрос был отклонен " + volounteer_name)
 
