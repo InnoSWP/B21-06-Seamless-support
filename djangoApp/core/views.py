@@ -48,3 +48,4 @@ def get_answers():
     f.close()
     open('./answer.txt', 'w').close()
     print(answers)
+

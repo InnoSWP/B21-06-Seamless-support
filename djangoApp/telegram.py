@@ -100,3 +100,4 @@ async def send_random_value(call: types.CallbackQuery):
     await call.message.answer("Вопрос был отклонен " + volounteer_name)
 
 executor.start_polling(dp, skip_updates=True)
+
