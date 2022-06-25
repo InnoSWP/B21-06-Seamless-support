@@ -1,26 +1,14 @@
-import asyncio
+import config
+import django
 import logging
 import os
-from datetime import datetime, timedelta
-from random import randint
 
 from aiogram import Bot, Dispatcher, executor, filters, types
-from aiogram.types import (
-    InlineKeyboardButton,
-    InlineKeyboardMarkup,
-    KeyboardButton,
-    ReplyKeyboardMarkup,
-    ReplyKeyboardRemove,
-    Update,
-)
-from aiogram.utils.callback_data import CallbackData
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoApp.settings")
-import django
 
 django.setup()
 
-import config
 
 bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
