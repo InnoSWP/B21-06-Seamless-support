@@ -5,22 +5,21 @@ from random import randint
 from datetime import datetime, timedelta
 from aiogram import Bot, Dispatcher, executor, types, filters
 from aiogram.types import (
-    ReplyKeyboardRemove,
-    ReplyKeyboardMarkup,
-    KeyboardButton,
-    InlineKeyboardMarkup,
     InlineKeyboardButton,
+    InlineKeyboardMarkup,
+    KeyboardButton,
+    ReplyKeyboardMarkup,
+    ReplyKeyboardRemove,
     Update,
 )
 from aiogram.utils.callback_data import CallbackData
 
-import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'djangoApp.settings')
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoApp.settings")
 import django
+
 django.setup()
 
 import config
-
 
 bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
@@ -73,7 +72,6 @@ async def send_random_value(call: types.CallbackQuery):
     async def start_help(call: types.CallbackQuery):
         await bot.send_message(volounteer_id, "Напишите решение проблемы")
 
-
     @dp.callback_query_handler(filters.Text(contains="finish", ignore_case=True))
     async def finish_help(call: types.CallbackQuery):
         await bot.send_message(volounteer_id, "Ваш ответ отправлен\nСпасибо!")
@@ -92,12 +90,10 @@ async def send_random_value(call: types.CallbackQuery):
         # add_answers(message=message.text, vol_id=str(message.from_user.id))
 
 
-
-
-@dp.callback_query_handler(text="decline")
+@dp.callback_query_handler_dec(text="decline")
 async def send_random_value(call: types.CallbackQuery):
     volounteer_name = call.from_user.first_name
     await call.message.answer("Вопрос был отклонен " + volounteer_name)
 
-executor.start_polling(dp, skip_updates=True)
 
+executor.start_polling(dp, skip_updates=True)

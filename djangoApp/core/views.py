@@ -1,15 +1,17 @@
+import os
+
 from django.shortcuts import render
+from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from rest_framework import status
+
+from .models import Answer
 from .serializer import AnswerSerializer, MessageSerializer
-from .models import Answer, Message
-import os
 
 # Create your views here.
 
 answers = [
-    {Answer(id=999, vol_id='0', answer='-')},
+    {Answer(id=999, vol_id="0", answer="-")},
 ]
 
 
@@ -41,11 +43,10 @@ def send_message(request):
 
 
 def get_answers():
-    f = open('./answer.txt', 'r')
+    f = open("./answer.txt", "r")
     ans = f.readline()
-    if ans != '':
+    if ans != "":
         answers.append({Answer(id=len(answers)+1, vol_id='120', answer=ans)})
     f.close()
-    open('./answer.txt', 'w').close()
+    open("./answer.txt", "w").close()
     print(answers)
-
