@@ -1,8 +1,8 @@
-import config
-import django
 import logging
 import os
 
+import config
+import django
 from aiogram import Bot, Dispatcher, executor, filters, types
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoApp.settings")
