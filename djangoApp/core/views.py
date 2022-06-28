@@ -1,10 +1,15 @@
+import gspread
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-import gspread
 from .models import Answer
-from .serializer import AnswerSerializer, MessageSerializer, ChatMessageSerializer
+from .serializer import (
+    AnswerSerializer,
+    MessageSerializer,
+    ChatMessageSerializer,
+)
+
 
 # Create your views here.
 
@@ -38,20 +43,24 @@ def send_message(request):
         return Response(serializer.data)
     elif request.method == "POST":
         serializer = MessageSerializer(data=request.data)
-        chat_id = request.query_params.get('chat_id')
+        chat_id = request.query_params.get("chat_id")
         if serializer.is_valid():
             f = open("./file.txt", "w")
             f.write(serializer.validated_data["user_id"] + "\n")
             f.write(serializer.validated_data["question"])
-            add_message_to_db(chat_id, serializer.validated_data['user_id'], serializer.validated_data['question'])
+            add_message_to_db(
+                chat_id,
+                serializer.validated_data['user_id'],
+                serializer.validated_data['question'],
+            )
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 # Getting all messages from the FAQ chat
-@api_view(['GET'])
+@api_view(["GET"])
 def get_question_case(request):
-    ind = request.query_params.get('id')
+    ind = request.query_params.get("id")
     if ind != 0:
         data = get_chat(ind)
         return Response(data)
@@ -80,13 +89,13 @@ def add_message_to_db(chat_id, from_id, text):
 def verify_user(user_mail):
     records = userChat.get_all_records()
     for record in records:
-        if record['user_mail'] == user_mail:
-            return record['user_id']
+        if record["user_mail"] == user_mail:
+            return record["user_id"]
 
 
 def get_chat(chat_id):
     records = allMessages.get_all_records()
-    chat = filter(lambda record: str(record['chat_id']) == str(chat_id), records)
+    chat = filter(lambda record: str(record["chat_id"]) == str(chat_id), records)
     chat = list(chat)
     serializer = ChatMessageSerializer(data=chat, many=True)
     if serializer.is_valid():
