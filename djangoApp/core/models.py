@@ -17,3 +17,12 @@ class Answer (models.Model):
 
     def __str__(self):
         return self.answer
+
+
+class ChatMessage(models.Model):
+    chat_id = models.CharField(max_length=10)
+    from_id = models.CharField(max_length=10)
+    text = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.text
