@@ -50,8 +50,8 @@ def send_message(request):
             f.write(serializer.validated_data["question"])
             add_message_to_db(
                 chat_id,
-                serializer.validated_data['user_id'],
-                serializer.validated_data['question'],
+                serializer.validated_data["user_id"],
+                serializer.validated_data["question"],
             )
             return Response(status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
