@@ -2,22 +2,25 @@
     font-family: "Montserrat", sans-serif;
     text-align: center;
     height: 100%;
-  }
-  .header-panel {
+}
+
+.header-panel {
     width: 100%;
     padding: 15px;
     margin: -10px 0px 30px -10px;
     background: #078500;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  }
-  .question-form {
+}
+
+.question-form {
     padding: 15px;
     border-radius: 16px 16px 16px 16px;
     display: flex;
     flex-direction: column;
     transition: 0.4s ease;
-  }
-  .question-form .lable {
+}
+
+.question-form .lable {
     padding: 3px 5px 10px 5px;
     color: black;
     font-weight: 600;
@@ -25,8 +28,9 @@
     font-family: "Comic Neue", serif;
     font-style: normal;
     font-size: 25px;
-  }
-  .question-form .question-box {
+}
+
+.question-form .question-box {
     width: 100%;
     font-family: "Merriweather Sans", serif;
     border: 2px solid #12152a;
@@ -36,4 +40,4 @@
     outline: none;
     font-size: 15px;
     transition: 0.4s ease;
-  }
+}

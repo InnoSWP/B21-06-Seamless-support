@@ -1,7 +1,7 @@
-import ChatPage from "./components/chatPage/ChatPage";
-import './App.css';
-import MainPage from "./components/MainPage";
-import React, {useState} from "react";
+import ChatPage from './components/chatPage/ChatPage'
+import './App.css'
+import MainPage from './components/MainPage'
+import React, {useState} from "react"
 
 
 
