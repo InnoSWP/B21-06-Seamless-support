@@ -9,7 +9,6 @@ from .serializer import (
     AnswerSerializer,
     ChatMessageSerializer,
     MessageSerializer,
-    QuestionSerializer,
     QuestionChatSerializer,
 )
 
@@ -72,7 +71,7 @@ def get_question_case(request):
 @api_view(["POST"])
 def get_faq(request):
     data = get_faqs()
-    return Response(data)
+    return HttpResponse(data)
 
 
 def get_answers():

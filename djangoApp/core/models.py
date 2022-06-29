@@ -1,6 +1,5 @@
 from django.db import models
 
-
 # Create your models here.
 
 
@@ -43,4 +42,12 @@ class QuestionChat(models.Model):
     vol_id = models.CharField(max_length=10)
 
     def __str__(self):
-        return self.question_text + ": " + self.chat_id + ": " + self.user_id + "-> " + self.vol_id
+        return (
+            self.question_text
+            + ": "
+            + self.chat_id
+            + ": "
+            + self.user_id
+            + "-> "
+            + self.vol_id
+        )
