@@ -52,6 +52,7 @@ def send_message(request):
             f = open("./file.txt", "w")
             f.write(serializer.validated_data["user_id"] + "\n")
             f.write(serializer.validated_data["question"])
+            f.close()
             add_message_to_db(
                 chat_id,
                 serializer.validated_data["user_id"],
