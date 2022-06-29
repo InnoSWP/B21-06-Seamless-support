@@ -71,7 +71,7 @@ def get_question_case(request):
 @api_view(["POST"])
 def get_faq(request):
     data = get_faqs()
-    return HttpResponse(data)
+    return Response(data)
 
 
 def get_answers():
