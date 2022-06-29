@@ -91,6 +91,7 @@ def get_answers():
 
 def add_message_to_db(chat_id, from_id, text):
     allMessages.add_rows(1)
+    records = allMessages.get_all_values()
     time.sleep(3)
     index = allMessages.row_count + 1
     print('index: ' + str(index) + ' text:' + text)

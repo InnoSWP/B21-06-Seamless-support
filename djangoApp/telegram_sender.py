@@ -10,15 +10,13 @@ bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
 
 
-
 def watch_file_update(path):
-  timestamp = os.stat(path).st_mtime
-  while 1:
-    if timestamp != os.stat(path).st_mtime:
-      timestamp = os.stat(path).st_mtime
-      print('Файл изменён!')
-      return 1
-
+    timestamp = os.stat(path).st_mtime
+    while 1:
+        if timestamp != os.stat(path).st_mtime:
+            timestamp = os.stat(path).st_mtime
+            print('Файл изменён!')
+            return 1
 
 
 async def somefunc():
@@ -30,6 +28,7 @@ async def somefunc():
     while 1:
         if watch_file_update("file.txt"):
             await bot.send_message(config.CHAT_ID, "Новый вопрос", reply_markup=greet_kb)
+
 
 if __name__ == '__main__':
     executor.start(dp, somefunc())
