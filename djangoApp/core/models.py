@@ -1,5 +1,6 @@
 from django.db import models
 
+
 # Create your models here.
 
 
@@ -26,3 +27,20 @@ class ChatMessage(models.Model):
 
     def __str__(self):
         return self.text
+
+
+class Question(models.Model):
+    question = models.CharField(max_length=250)
+
+    def __str__(self):
+        return self.question
+
+
+class QuestionChat(models.Model):
+    question_text = models.CharField(max_length=250)
+    chat_id = models.CharField(max_length=10)
+    user_id = models.CharField(max_length=10)
+    vol_id = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.question_text + ": " + self.chat_id + ": " + self.user_id + "-> " + self.vol_id

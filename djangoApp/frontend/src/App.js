@@ -6,7 +6,7 @@ import React, {useState} from "react"
 
 
 function App() {
-    const [currPage, setCurrPage] = useState('Chat');
+    const [currPage, setCurrPage] = useState('Main');
     const page = currPage === 'Main' ? <MainPage/>:<ChatPage/>
   return (
     <div className="App">
