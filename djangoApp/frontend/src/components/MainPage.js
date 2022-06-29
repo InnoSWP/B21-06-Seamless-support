@@ -1,11 +1,14 @@
 import "./MainPage.css";
 import React from "react";
+import FAQ from "./FAQ";
 
 class MainPage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: ""
+      question: "",
+      asked: false,
+      FAQQuestions:[1,1]
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -22,7 +25,7 @@ class MainPage extends React.Component {
     };
     fetch('variants/', requestOptions)
       .then(response => response.json())
-      .then(data => console.log(data));
+      .then(data =>this.setState({FAQQuestions:data.questions,asked:true}));
   }
 
   render() {
@@ -41,7 +44,9 @@ class MainPage extends React.Component {
                 ></input>
               </form>
             </div>
-        </main>
+          </div>
+         {this.state.asked && <FAQ questions={this.state.FAQQuestions}/>} 
+         </main>
       </div>
     );
   }
