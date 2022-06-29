@@ -14,7 +14,7 @@ const ChatPage = (props) => {
     useEffect(() => {
         let interval = setInterval(() => {
             getMessages();
-        }, 2000);
+        }, 3500);
         return () => {
             clearInterval(interval);
         };
