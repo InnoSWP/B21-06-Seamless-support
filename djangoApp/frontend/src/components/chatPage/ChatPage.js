@@ -11,7 +11,6 @@ const ChatPage = (props) => {
 
     const [messages, setMessages] = useState([]); //The list of messages
     const me = props.user_id; //User_id got from Auth page
-
     useEffect(() => {
         let interval = setInterval(() => {
             getMessages();
@@ -22,6 +21,7 @@ const ChatPage = (props) => {
     }, []);
 
     const getMessages = () => {
+        console.log(me)
         axios({
                 method: 'GET',
                 url: 'send/',
@@ -53,7 +53,7 @@ const ChatPage = (props) => {
                 method: 'POST',
                 url: 'send/',
                 params:{
-                  chat_id: 2
+                    chat_id: 2,
                 },
                 data: {
                     user_id: me,

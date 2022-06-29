@@ -1,4 +1,5 @@
 import gspread
+import time
 from django.shortcuts import render
 from rest_framework import status
 from rest_framework.decorators import api_view
@@ -46,6 +47,7 @@ def send_message(request):
     elif request.method == "POST":
         serializer = MessageSerializer(data=request.data)
         chat_id = request.query_params.get("chat_id")
+        print(request.data)
         if serializer.is_valid():
             f = open("./file.txt", "w")
             f.write(serializer.validated_data["user_id"] + "\n")
@@ -89,9 +91,12 @@ def get_answers():
 def add_message_to_db(chat_id, from_id, text):
     allMessages.add_rows(1)
     index = allMessages.row_count + 1
+    print('index' + str(index) + ' text:' + text)
+    time.sleep(2)
     allMessages.update_cell(index, 1, str(chat_id))
     allMessages.update_cell(index, 2, str(from_id))
     allMessages.update_cell(index, 3, str(text))
+    print('ADDED')
 
 
 def verify_user(user_mail):
