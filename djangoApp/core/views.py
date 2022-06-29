@@ -9,6 +9,7 @@ from .serializer import (
     AnswerSerializer,
     ChatMessageSerializer,
     MessageSerializer,
+    QuestionChatSerializer,
 )
 
 # Create your views here.
@@ -67,6 +68,12 @@ def get_question_case(request):
     return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
+@api_view(["POST"])
+def get_faq(request):
+    data = get_faqs()
+    return Response(data)
+
+
 def get_answers():
     f = open("answer.txt", "r")
     ans = f.readline()
@@ -98,5 +105,13 @@ def get_chat(chat_id):
     chat = filter(lambda record: str(record["chat_id"]) == str(chat_id), records)
     chat = list(chat)
     serializer = ChatMessageSerializer(data=chat, many=True)
+    if serializer.is_valid():
+        return serializer.validated_data
+
+
+def get_faqs():
+    records = questionChat.get_all_records()
+    records = list(records)
+    serializer = QuestionChatSerializer(data=records, many=True)
     if serializer.is_valid():
         return serializer.validated_data
