@@ -90,9 +90,9 @@ def get_answers():
 
 def add_message_to_db(chat_id, from_id, text):
     allMessages.add_rows(1)
+    time.sleep(2)
     index = allMessages.row_count + 1
     print('index' + str(index) + ' text:' + text)
-    time.sleep(2)
     allMessages.update_cell(index, 1, str(chat_id))
     allMessages.update_cell(index, 2, str(from_id))
     allMessages.update_cell(index, 3, str(text))
