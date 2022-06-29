@@ -23,7 +23,7 @@ class MainPage extends React.Component {
         "question": event.target.value
       })
     };
-    fetch('', requestOptions)
+    fetch('variants/', requestOptions)
       .then(response => response.json())
       .then(data =>this.setState({FAQQuestions:data.questions,asked:true}));
   }
@@ -32,8 +32,7 @@ class MainPage extends React.Component {
     return (
       <div className="main-page">
         <main>
-          <div>
-            <div className="header-panel">Header Panel</div>
+            <div className="header-panel"></div>
             <div>
               <form className="question-form" onSubmit={this.handleSubmit}>
                 <label className="lable">Ask Your Question</label>

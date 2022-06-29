@@ -11,20 +11,23 @@ const ChatPage = (props) => {
 
     const [messages, setMessages] = useState([]); //The list of messages
     const me = props.user_id; //User_id got from Auth page
-
     useEffect(() => {
         let interval = setInterval(() => {
             getMessages();
-        }, 5000);
+        }, 3500);
         return () => {
             clearInterval(interval);
         };
     }, []);
 
     const getMessages = () => {
+        console.log(me)
         axios({
                 method: 'GET',
                 url: 'send/',
+                params:{
+                    user_id: props.user_id,
+                }
             }
         ).then((response) => {
             const data = response.data[0];
@@ -49,6 +52,9 @@ const ChatPage = (props) => {
         axios({
                 method: 'POST',
                 url: 'send/',
+                params:{
+                    chat_id: 2,
+                },
                 data: {
                     user_id: me,
                     question: str
