@@ -81,17 +81,17 @@ def get_faq(request):
 def get_answers():
     f = open("answer.txt", "r")
     ans = f.readline()
+    f.close()
     if ans != "":
         add_message_to_db(2, 120, ans)
         answers.append({Answer(id=len(answers) + 1, vol_id="120", answer=ans)})
-    f.close()
     open("answer.txt", "w").close()
     print(answers)
 
 
 def add_message_to_db(chat_id, from_id, text):
     allMessages.add_rows(1)
-    time.sleep(2)
+    time.sleep(4)
     index = allMessages.row_count + 1
     print('index' + str(index) + ' text:' + text)
     allMessages.update_cell(index, 1, str(chat_id))
