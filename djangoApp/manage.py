@@ -1,13 +1,9 @@
 #!/usr/bin/env python
 import os
 import sys
-import subprocess
 
 
 def main():
-    files = ["telegram_sender.py", "telegram.py"]
-    for file in files:
-        subprocess.Popen(args=["start", "python", file], shell=True, stdout=subprocess.PIPE)
     os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoApp.settings")
     try:
         from django.core.management import execute_from_command_line
