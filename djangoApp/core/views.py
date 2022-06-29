@@ -36,6 +36,7 @@ def send_message(request):
         get_answers()
         if len(answers) > 1:
             ans = answers[1]
+            answers.pop(1)
             serializer = AnswerSerializer(ans, many=True)
             return Response(serializer.data)
         ans = answers[0]
