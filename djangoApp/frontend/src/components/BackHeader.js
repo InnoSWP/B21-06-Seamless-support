@@ -2,11 +2,14 @@ import React from "react";
 import arrow from './img/arrowLeft.png'
 import './css/BackHeader.css'
 
-const BackHeader = () => {
+const BackHeader = (props) => {
+    const clickHandler = () => {
+        props.onBack()
+    }
     return(
         <div className={'back-header'}>
-            <div className={'back-button'} onClick="history.back()">
-                <img src = {arrow} alt={'afajfja'}/>
+            <div className={'back-button'} onClick={clickHandler}>
+                <img src = {arrow} alt={'arrow'}/>
                 <p>Back</p>
             </div>
         </div>

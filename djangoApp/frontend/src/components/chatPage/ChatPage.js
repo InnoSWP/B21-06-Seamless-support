@@ -8,7 +8,9 @@ import './css/ChatPage.css'
 import axios from "axios";
 
 const ChatPage = (props) => {
-
+    const backHandler = () => {
+        props.onBack(0, {})
+    }
     const [messages, setMessages] = useState([]); //The list of messages
     const me = props.user_id; //User_id got from Auth page
     useEffect(() => {
@@ -82,7 +84,7 @@ const ChatPage = (props) => {
 
     return (
         <div className={'chat-page'}>
-            <BackHeader/>
+            <BackHeader onBack={backHandler}/>
             <div className={'chat-window'}> {chat}</div>
             <Footer onSend={sendMessage}/>
         </div>
