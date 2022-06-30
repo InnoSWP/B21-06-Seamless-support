@@ -1,15 +1,37 @@
-import React from "react";
+import React, {useState} from "react";
+import FAQOption from "./FAQOption";
+import AskVolunteer from "./AskVolunteer"
+import './css/FAQ.css'
 
-class FAQ extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-    };
-    this.handleClick = this.handleClick.bind(this);
-  }
-  
-  render() {
-    return (<div>{this.props.questions.map((elem,index) => <li key={index}> <button > {elem}</button></li>)}</div>)
-  }
+const FAQ = (props) => {
+    const chooseHandling = (index, params) => {
+        props.onChoose(index, params)
+    }
+    const options = props.questions;
+    const [ask, cls] = props.question === "" ? [<div/>, 'none'] : [<AskVolunteer question={props.question}
+                                                                                 onAsk={chooseHandling}/>, 'faq-box'];
+    console.log(props.questions)
+    const faqOptions = options.map(
+        (option, index) => {
+            console.log(option);
+            return <FAQOption
+                key={index}
+                message={
+                    {
+                        question: option.question_text,
+                        chat_id: option.chat_id,
+                        user_id: option.user_id,
+                        vol_id: option.vol_id,
+                    }
+                }
+                onSee={chooseHandling}/>
+        }
+    )
+    return (
+        <div className={cls}>
+            {ask}
+            {faqOptions}
+        </div>
+    )
 }
 export default FAQ;
