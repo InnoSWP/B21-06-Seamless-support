@@ -8,3 +8,4 @@ Django App folder with front-end (React) and back-end part (Python)
 Config file with constant data
 
 The code is documented and designed to be easy to extend. If you use it in your research, please consider citing this repository (bibtex below). 
+testing
