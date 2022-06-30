@@ -3,10 +3,13 @@ import time
 import selenium
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.options import Options
 
 
 def start_working():
-    driver = webdriver.Chrome()
+    options = Options()
+    options.headless = True
+    driver = webdriver.Chrome(options=options)
     try:
         driver.get('http://127.0.0.1:8000/')
     except selenium.common.exceptions.WebDriverException:

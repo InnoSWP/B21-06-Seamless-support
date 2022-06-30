@@ -8,6 +8,7 @@ import webapp
 
 def start_tg():
     options = Options()
+    options.headless = True
     options.add_argument("--user-data-dir=C:\\PycharmProjects\\pythonProject4\\chrome_data")
     driver = webdriver.Chrome(options=options)
     driver.get('https://web.telegram.org/k/')
