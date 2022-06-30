@@ -1,2 +1,1 @@
 For now tests are not added to the github workflow, but you can find them in our project's "tests" folder
-==============================================================================================
