@@ -1,0 +1,41 @@
+.ask-volunteer {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    padding: 15px;
+    cursor: pointer;
+    color: #078500;
+    font-weight: bold;
+}
+
+.ask-volunteer p {
+    margin: 5px 5px 5px 10px;
+}
+
+.faq-box {
+    width: 60vw;
+    border: #12152a solid 3px;
+    border-radius: 20px;
+    margin: 10px 20vw;
+    transition: 0.4s ;
+    font-weight: bold;
+}
+
+.option {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: left;
+    padding: 15px;
+    cursor: pointer;
+}
+
+.option p {
+    margin: 5px 5px 5px 10px;
+}
+
+.bold {
+    font-weight: bolder;
+    color: #12152a;
+}

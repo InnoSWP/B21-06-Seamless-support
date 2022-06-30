@@ -62,7 +62,7 @@ def send_message(request):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
-# Getting all messages from the FAQ chat
+# Getting all messages from the FAQOption chat
 @api_view(["GET"])
 def get_question_case(request):
     ind = request.query_params.get("id")
@@ -75,6 +75,7 @@ def get_question_case(request):
 @api_view(["POST"])
 def get_faq(request):
     data = get_faqs()
+    print(data)
     return Response(data)
 
 

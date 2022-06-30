@@ -19,6 +19,9 @@ const ChatPage = (props) => {
             clearInterval(interval);
         };
     }, []);
+    useEffect(
+        () => sendMessage(props.first_question),[]
+    )
 
     const getMessages = () => {
         console.log(me)
