@@ -8,8 +8,9 @@ const FAQ = (props) => {
         props.onChoose(index, params)
     }
     const options = props.questions;
-    const [ask, cls] = props.question === "" ? [<div/>, 'none'] : [<AskVolunteer question={props.question}
-                                                                                 onAsk={chooseHandling}/>, 'faq-box'];
+    const ask = props.question === "" ? <div/> : <AskVolunteer question={props.question}
+                                                                                 onAsk={chooseHandling}/>;
+    const cls = (props.question === "") && (options.length === 0) ? 'none' : 'faq-box'
     console.log(props.questions)
     const faqOptions = options.map(
         (option, index) => {

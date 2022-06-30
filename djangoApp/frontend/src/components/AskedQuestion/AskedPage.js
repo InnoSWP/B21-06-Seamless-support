@@ -5,6 +5,9 @@ import ReceiveMessage from "../chatPage/ReceiveMessage";
 
 
 const AskedPage = (props) =>{
+    const backHandler = () => {
+        props.onBack(0, {})
+    }
     const me = props.user_id;
     const messages = props.data;
     const chat = messages.map(
@@ -23,7 +26,7 @@ const AskedPage = (props) =>{
     )
     return(
         <div>
-            <BackHeader/>
+            <BackHeader onBack={backHandler}/>
             <div className={'chat-window'}>{chat}</div>
         </div>
     )
