@@ -1,8 +1,32 @@
 import gspread
+from abc import ABCMeta, abstractmethod
 from config import DATABASE_NAME
 
 
-class Database:
+class CloudDatabase():
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def __init__(self):
+        """Initialization of your dataBase"""
+
+    @abstractmethod
+    def add_message_to_db(self, chat_id, from_id, text):
+        """How new message will be added to your Database"""
+        """Id of a chat, where this question was asked"""
+        """How new message will be added to your Database"""
+        """Text of a new message"""
+
+    @abstractmethod
+    def get_chat(self, chat_id):
+        """Loading chat from your Database by its chat_id"""
+
+    @abstractmethod
+    def get_faqs(self):
+        """Loading FAQ list from your Database"""
+
+
+class GoogleSheets(CloudDatabase):
 
     def __init__(self):
         self.sa = gspread.service_account()
@@ -29,4 +53,3 @@ class Database:
         records = self.worksheets[1].get_all_records()
         records = list(records)
         return records
-
