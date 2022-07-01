@@ -1,6 +1,5 @@
 import logging
 import os
-
 import config
 import django
 from aiogram import Bot, Dispatcher, executor, filters, types
