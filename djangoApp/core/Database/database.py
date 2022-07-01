@@ -14,7 +14,7 @@ class CloudDatabase():
     def add_message_to_db(self, chat_id, from_id, text):
         """How new message will be added to your Database"""
         """Id of a chat, where this question was asked"""
-        """How new message will be added to your Database"""
+        """Who sended this message"""
         """Text of a new message"""
 
     @abstractmethod
