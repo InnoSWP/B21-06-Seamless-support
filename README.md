@@ -17,6 +17,13 @@ Users can refer to our integrated platform if they have some questions. The proc
 
 Installation
 -------------
+Install Node.js
+```bash
+npm install
+```
+
+*Optional:*
+This is optional, because it is only needed for the front-end part to work, but you can write the front-end yourself
 In order to run the code on your device, go to the front-end folder and write the following in the terminal: 
 ```bash
 npm run build
