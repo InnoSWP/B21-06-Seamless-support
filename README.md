@@ -15,8 +15,8 @@ Users can refer to our integrated platform if they have some questions. The proc
 
 ![](IMG_2756.gif)
 
-Getting Started
-----------------
+Installation
+-------------
 In order to run the code on your device, go to the front-end folder and write the following in the terminal: 
 ```bash
 npm run build
