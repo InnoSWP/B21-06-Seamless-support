@@ -12,7 +12,7 @@ class CloudDatabase():
 
     @abstractmethod
     def add_message_to_db(self, chat_id, from_id, text):
-        """How new message will be added to your Database"""
+        """Adding message to your Database"""
         """Id of a chat, where this question was asked"""
         """Who sent this message"""
         """Text of a new message"""
