@@ -54,8 +54,8 @@ class MainPage extends React.Component {
                             />
                         </form>
                     </div>
-                    <FAQ questions={this.state.FAQQuestions} question={this.state.currQuestion} onChoose={this.changeHandling}/>
-                </main>
+                    {this.state.asked&&<FAQ questions={this.state.FAQQuestions} question={this.state.currQuestion} onChoose={this.changeHandling}/>}
+                    </main>
             </div>
         );
     }
