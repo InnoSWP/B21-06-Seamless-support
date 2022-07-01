@@ -13,6 +13,8 @@ Functionality
 -------------
 Users can refer to our integrated platform if they have some questions. The process is the following: user enters the QA field and in case of noticing the necessary question among the most frequently asked ones just click on it and get a fast answer. In another case, the user just types his/her question in a specific window and gets redirected to a dialog page, where can see all the answers below the questions. From the inner side, the process is more detailed and consists of resending the user’s question from the server to the common telegram chat with all the volunteers. There they can accept or reject the question, after this there forms a chat in telegram with a specific volunteer and a user. In the chat volunteer types the answer, pushes the “send” button and the message gets redirected back to the service and published on the page. 
 
+![](IMG_2756.gif)
+
 Getting Started
 ----------------
 In order to run the code on your device, go to the front-end folder and write the following in the terminal: 
