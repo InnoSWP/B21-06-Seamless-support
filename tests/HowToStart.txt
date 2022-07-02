@@ -1,0 +1,3 @@
+1) To start front-tests execution you need to firstly run server. It can be done by writing command: "python(python3 for mac and linux) manage.py runserver.
+
+2) To start front-back-tets, firstly, run server, then turn on each bot, by running its code 
