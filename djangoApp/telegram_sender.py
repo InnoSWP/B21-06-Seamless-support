@@ -1,7 +1,6 @@
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from aiogram.utils import executor
 from aiogram import Bot, Dispatcher
-from Data
 import config
 import os
 

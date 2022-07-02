@@ -1,12 +1,12 @@
 import logging
 import os
 import config
-import django
-from aiogram import Bot, Dispatcher, executor, filters, types
+
+from aiogram import Bot, Dispatcher, filters, types
+from core.answers import answers
+from core.models import Answer
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoApp.settings")
-
-django.setup()
 
 
 bot = Bot(token=config.TOKEN)
@@ -72,6 +72,9 @@ async def send_random_value(call: types.CallbackQuery):
 
     @dp.message_handler()
     async def get_answer(message: types.Message):
+        answer = Answer.objects.create(vol_id=message.from_user.id, answer=message.text)
+        answers.append(answer)
+
         file_answer = open("answer.txt", "w")
         file_answer.write(message.text)
         file_answer.close()
@@ -84,4 +87,4 @@ async def send_random_value_dec(call: types.CallbackQuery):
     await call.message.answer("Вопрос был отклонен " + volounteer_name)
 
 
-executor.start_polling(dp, skip_updates=True)
+# executor.start_polling(dp, skip_updates=True)
