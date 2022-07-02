@@ -1,7 +1,7 @@
 from aiogram.types import KeyboardButton, ReplyKeyboardMarkup
 from aiogram.utils import executor
 from aiogram import Bot, Dispatcher
-from Data
+from core.Database.database import GoogleSheets
 import config
 import os
 
@@ -9,6 +9,7 @@ API_TOKEN = '5566247924:AAE5b_fEMsbRyuNZrsC3O33zkqEXwmoESJA'
 
 bot = Bot(token=API_TOKEN)
 dp = Dispatcher(bot)
+gs = GoogleSheets()
 
 
 def watch_file_update(path):
@@ -28,7 +29,9 @@ async def somefunc():
 
     while 1:
         if watch_file_update("file.txt"):
-            await bot.send_message(config.CHAT_ID, "Новый вопрос", reply_markup=greet_kb)
+            mess = open("file.txt", "r").read().split('\n')
+            num_of_q = gs.add_message_to_queue(user_id=mess[0], text=mess[1])
+            await bot.send_message(config.CHAT_ID, "Новый вопрос. Всего вопросов - " + str(num_of_q), reply_markup=greet_kb)
 
 
 if __name__ == '__main__':

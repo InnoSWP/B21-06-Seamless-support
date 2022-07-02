@@ -3,6 +3,7 @@ import os
 import config
 import django
 from aiogram import Bot, Dispatcher, executor, filters, types
+from core.Database.database import GoogleSheets as Database
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "djangoApp.settings")
 
@@ -12,13 +13,14 @@ django.setup()
 bot = Bot(token=config.TOKEN)
 dp = Dispatcher(bot)
 logging.basicConfig(level=logging.INFO)
+gs = Database()
 
 
 @dp.message_handler(filters.Text(contains="Получить вопрос", ignore_case=True))
 async def cmd_random(message: types.Message):
-    f = open("file.txt", "r")
-    USER_NAME = f.readline()
-    USER_QUESTION = f.readline()
+    mess = gs.peek_message_from_queue()
+    USER_NAME = mess[0]
+    USER_QUESTION = mess[1]
 
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(types.InlineKeyboardButton(text="Принять ✅", callback_data="accept"))
@@ -28,14 +30,13 @@ async def cmd_random(message: types.Message):
     await message.answer(
         "Имя: " + USER_NAME + "\nВопрос: " + USER_QUESTION, reply_markup=keyboard
     )
-    f.close()
 
 
 @dp.callback_query_handler(filters.Text(contains="accept", ignore_case=True))
 async def send_random_value(call: types.CallbackQuery):
-    f = open("file.txt", "r")
-    USER_NAME = f.readline()
-    USER_QUESTION = f.readline()
+    mess = gs.pop_message_from_queue()
+    USER_NAME = mess[0]
+    USER_QUESTION = mess[1]
 
     volounteer_id = call.from_user.id
     volounteer_name = call.from_user.first_name
@@ -44,8 +45,6 @@ async def send_random_value(call: types.CallbackQuery):
     await bot.send_message(
         volounteer_id, "Вопрос от " + USER_NAME + "\n" + USER_QUESTION
     )
-
-    f.close()
 
     keyboard = types.InlineKeyboardMarkup()
     keyboard.add(

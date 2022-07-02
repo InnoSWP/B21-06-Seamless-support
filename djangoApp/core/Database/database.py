@@ -1,6 +1,7 @@
 import gspread
 from abc import ABCMeta, abstractmethod
 from config import DATABASE_NAME
+import time
 
 
 class CloudDatabase():
@@ -18,6 +19,18 @@ class CloudDatabase():
         """Text of a new message"""
 
     @abstractmethod
+    def add_message_to_queue(self, user_id, text):
+        """Adding message to your Queue"""
+
+    @abstractmethod
+    def pop_message_from_queue(self):
+        """Getting first message from your Queue and then deleting this message"""
+
+    @abstractmethod
+    def peek_message_from_queue(self):
+        """Getting first message from your Queue"""
+
+    @abstractmethod
     def get_chat(self, chat_id):
         """Loading chat from your Database by its chat_id"""
 
@@ -32,6 +45,7 @@ class GoogleSheets(CloudDatabase):
         self.sa = gspread.service_account()
         self.sdb = self.sa.open(DATABASE_NAME)
         self.worksheets = self.sdb.worksheets()
+        self.number_of_questions = self.worksheets[4].row_count - 1
         print(self.worksheets)
 
     def add_message_to_db(self, chat_id, from_id, text):
@@ -48,6 +62,22 @@ class GoogleSheets(CloudDatabase):
         chat = filter(lambda record: str(record["chat_id"]) == str(chat_id), records)
         chat = list(chat)
         return chat
+
+    def add_message_to_queue(self, user_id, text):
+        self.worksheets[4].resize(self.number_of_questions + 2)
+        self.worksheets[4].update_cell(self.number_of_questions + 2, 1, str(user_id))
+        self.worksheets[4].update_cell(self.number_of_questions + 2, 2, str(text))
+        self.number_of_questions += 1
+        return self.number_of_questions
+
+    def pop_message_from_queue(self):
+        message = self.peek_message_from_queue()
+        self.worksheets[4].delete_row(2)
+        return message
+
+    def peek_message_from_queue(self):
+        message = self.worksheets[4].row_values(2)
+        return message
 
     def get_faqs(self):
         records = self.worksheets[1].get_all_records()
