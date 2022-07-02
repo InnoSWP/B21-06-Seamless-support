@@ -4,7 +4,7 @@ from config import DATABASE_NAME
 import time
 
 
-class CloudDatabase():
+class CloudDatabase:
     __metaclass__ = ABCMeta
 
     @abstractmethod
@@ -49,7 +49,7 @@ class GoogleSheets(CloudDatabase):
         print(self.worksheets)
 
     def add_message_to_db(self, chat_id, from_id, text):
-        self.worksheets[3].add_rows(1)
+        self.worksheets[3].resize(rows=self.worksheets[3].row_count+1)
         index = self.worksheets[3].row_count + 1
         print('index: ' + str(index) + ' text:' + text)
         self.worksheets[3].update_cell(index, 1, str(chat_id))
