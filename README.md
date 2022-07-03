@@ -29,6 +29,11 @@ In order to run the code on your device, go to the front-end folder and write th
 npm run build
 ```
 
+Integration
+-----------
+Our project is divided into parts, each of which is very easy to integrate into the system. The platform consists of a front-end part, two telegram bots and a data base. You can use our front-end part or attach your own to the platform, to integrate bots you just need to register your bot token, for the database you need to inherit data from your interface.
+
+
 Additional information
 -----------------------
 **Linter:**
