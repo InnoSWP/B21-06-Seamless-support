@@ -29,6 +29,11 @@ In order to run the code on your device, go to the front-end folder and write th
 npm run build
 ```
 
+Additional information
+-----------------------
+**Linter:**
+[![Build](https://github.com/InnoSWP/05-DocPdf-Converter/actions/workflows/build.yml/badge.svg)](https://github.com/InnoSWP/B21-06-Seamless-support/actions/workflows/build.yml)
+
 
 Licence
 ---------
