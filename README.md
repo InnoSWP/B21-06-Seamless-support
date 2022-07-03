@@ -42,12 +42,11 @@ To integrate bots, you just need to register your bot token.<br>
 **Database:**
 For the database, you need to inherit data from your interface. It is also important to understand that the structure of your database should be as follows (sheets and field attributes should match those listed below)
 
-![](Снимок экрана 2022-07-03 в 21.19.42.png)
-![]
-![]
-![]
-![]
-![]
+<img src = "screenshot1.png" width="500"/> <img src = "screenshot2.png" width="500"/>
+<img src = "screenshot3.png" width="500"/> <img src = "screenshot4.png" width="500"/>
+<p align="center">
+<img src = "screenshot5.png" width="500"/>
+</p>
 
 
 Additional information
