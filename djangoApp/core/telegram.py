@@ -23,7 +23,7 @@ def send_question_available():
     greet_kb = ReplyKeyboardMarkup(resize_keyboard=True, one_time_keyboard=True)
     greet_kb.add(button_hi)
 
-    bot.send_message(chat_id=config.CHAT_ID, text="NEW QUESTION AVAILABLE\n", reply_markup=greet_kb)
+    bot.send_message(chat_id=config.CHAT_ID, text="New question available\n", reply_markup=greet_kb)
 
 
 @bot.message_handler(func=lambda m: m.text == "Get question")
