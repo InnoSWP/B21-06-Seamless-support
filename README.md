@@ -47,7 +47,7 @@ For adding a database, you need to create a new class that will be inherited fro
 <img src = "screenshot2.png" width=900"/>
 <img src = "screenshot3.png" width="900"/> 
 <img src = "screenshot4.png" width="900"/>
-<img src = "screenshot5.png" width="500"/>
+<img src = "screenshot5.png" width="900"/>
 
 Additional information
 -----------------------
