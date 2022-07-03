@@ -37,10 +37,10 @@ Our project is divided into parts, each of which is very easy to integrate into 
 You can use our front-end part or attach your own to the platform.<br>
 <br>
 **Back end part:**
-To integrate bots, you just need to register your bot token.<br>
+To integrate bots, you just need to register your bot token. These parameters are configured in the config.by file.<br>
 <br>
 **Database:**
-For the database, you need to inherit data from your interface. It is also important to understand that the structure of your database should be as follows (sheets and field attributes should match those listed below)
+For adding a database, you need to create a new class that will be inherited from abstract one in CloudDatabase.py. It is also important to understand that the structure of your database should be as follows (sheets and field attributes should match those listed below)
 
 <img src = "screenshot1.png" width="500"/> <img src = "screenshot2.png" width="500"/>
 <img src = "screenshot3.png" width="500"/> <img src = "screenshot4.png" width="500"/>
