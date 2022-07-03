@@ -31,7 +31,23 @@ npm run build
 
 Integration
 -----------
-Our project is divided into parts, each of which is very easy to integrate into the system. The platform consists of a front-end part, two telegram bots and a data base. You can use our front-end part or attach your own to the platform, to integrate bots you just need to register your bot token, for the database you need to inherit data from your interface.
+Our project is divided into parts, each of which is very easy to integrate into the system. The platform consists of a front-end part, two telegram bots and a data base.<br>
+<br>
+**Front end part:**
+You can use our front-end part or attach your own to the platform.<br>
+<br>
+**Back end part:**
+To integrate bots, you just need to register your bot token.<br>
+<br>
+**Database:**
+For the database, you need to inherit data from your interface. It is also important to understand that the structure of your database should be as follows (sheets and field attributes should match those listed below)
+
+![](Снимок экрана 2022-07-03 в 21.19.42.png)
+![]
+![]
+![]
+![]
+![]
 
 
 Additional information
