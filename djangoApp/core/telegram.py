@@ -87,7 +87,7 @@ def send_random_value(call: CallbackQuery):
 async def send_random_value_dec(call: CallbackQuery):
     volunteer_name = call.from_user.first_name
     bot.delete_message(chat_id=config.CHAT_ID, message_id=call.message.message_id)
-    bot.send_message(chat_id=config.CHAT_ID, text="Вопрос был отклонен " + volunteer_name)
+    bot.send_message(chat_id=config.CHAT_ID, text="The question was declined by " + volunteer_name)
 
 
 if __name__ == "__main__":
