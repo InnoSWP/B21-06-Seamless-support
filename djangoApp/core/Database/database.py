@@ -68,11 +68,12 @@ class GoogleSheets(CloudDatabase):
         self.worksheets[4].update_cell(self.number_of_questions + 2, 1, str(user_id))
         self.worksheets[4].update_cell(self.number_of_questions + 2, 2, str(text))
         self.number_of_questions += 1
-        return self.number_of_questions
 
     def pop_message_from_queue(self):
         message = self.peek_message_from_queue()
         self.worksheets[4].delete_row(2)
+        self.number_of_questions -= 1
+        print(self.number_of_questions)
         return message
 
     def peek_message_from_queue(self):
@@ -83,3 +84,9 @@ class GoogleSheets(CloudDatabase):
         records = self.worksheets[1].get_all_records()
         records = list(records)
         return records
+
+    def get_num(self):
+        return self.number_of_questions
+
+
+gs = GoogleSheets()
