@@ -25,6 +25,20 @@ For [React.js](https://dev.to/nagatodev/how-to-connect-django-to-reactjs-1a71#:~
 For [Vue.js](https://betterprogramming.pub/vue-django-using-vue-files-and-the-vue-cli-d6dd8c9145eb)<br>
 For [Angular](https://django-angular.readthedocs.io/en/latest/)<br>
 <br>
+If you are ok with our frontend part, anyway you have to perform some actions to make it work:<br>
+-Go to the frontend directory
+```bash
+cd djangoApp/frontend
+```
+-Install Node.js
+```bash
+npm install
+```
+-Build the frontend part
+```bash
+npm run build
+```
+<br>
 **Back end part:**
 To integrate bots, you just need to register your bot token. These parameters are configured in the config.by file.<br>
 <br>
