@@ -15,26 +15,15 @@ Users can refer to our integrated platform if they have some questions. The proc
 
 ![](IMG_2756.gif)
 
-Installation
--------------
-Install Node.js
-```bash
-npm install
-```
-
-*Optional:*
-This is optional, because it is only needed for the front-end part to work, but you can write the front-end yourself
-In order to run the code on your device, go to the front-end folder and write the following in the terminal: 
-```bash
-npm run build
-```
-
 Integration
 -----------
 Our project is divided into parts, each of which is very easy to integrate into the system. The platform consists of a front-end part, two telegram bots and a data base.<br>
 <br>
 **Front end part:**
 You can use our front-end part or attach your own to the platform.<br>
+For [React.js](https://dev.to/nagatodev/how-to-connect-django-to-reactjs-1a71#:~:text=Interfacing%20the%20front%20end%20application%20to%20the%20Django%20backend.&text=then%20configure%20the%20template%20directory,in%20our%20frontend%20react%20directory.&text=We%20need%20to%20configure%20the,page%20below%20the%20STATIC_URL%20line.)<br>
+For [Vue.js](https://betterprogramming.pub/vue-django-using-vue-files-and-the-vue-cli-d6dd8c9145eb)<br>
+For [Angular](https://django-angular.readthedocs.io/en/latest/)<br>
 <br>
 **Back end part:**
 To integrate bots, you just need to register your bot token. These parameters are configured in the config.by file.<br>
