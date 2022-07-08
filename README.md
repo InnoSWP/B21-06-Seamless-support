@@ -17,7 +17,7 @@ Users can refer to our integrated platform if they have some questions. The proc
 
 Integration
 -----------
-Our project is divided into parts, each of which is very easy to integrate into the system. The platform consists of a front-end part, two telegram bots and a data base.<br>
+Our project is divided into parts, each of which is very easy to integrate into the system. The platform consists of a front-end part, telegram bot and a database.<br>
 <br>
 **Front end part:**
 You can use our front-end part or attach your own to the platform.<br>
@@ -42,8 +42,8 @@ npm run build
 *Our frontend part is already connected to the backend in djangoApp/urls.py*<br>
 <br>
 **Back end part:**
-To integrate bots, you just need to register your bot token. These parameters are configured in the config.by file.<br>
-<br>
+To integrate bots, you just need to register your bot token. Then change the parameters in *config.py* which contains **TOKEN** (Your telegram bot token), **CHAT_ID** (Telegram volunteer chat id) and **DATABASE_NAME** (The name of your googlesheet file, if you use it as a database).<br>
+<br> 
 **Database:**
 For adding a database, you need to create a new class that will be inherited from abstract one in CloudDatabase.py. It is also important to understand that the structure of your database should be as follows (sheets and field attributes should match those listed below).<br>
 *Optional:* If you want to use GoogleSheets for this, please follow the instruction from https://docs.gspread.org/en/latest/oauth2.html and change the database name in config.py.
