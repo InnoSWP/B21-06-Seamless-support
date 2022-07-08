@@ -39,21 +39,32 @@ npm install
 ```bash
 npm run build
 ```
-*Our frontend part is already connected to the backend in djangoApp/urls.py*<br>
+Our frontend part is already connected to the backend in djangoApp/urls.py <br>
 <br>
-**Back end part:**
+**Backend part:**<br>
+If your project uses django for backend part, the only step you need is to take the core app from djangoApp directory, add to your project and connect it.<br>
+The guide is presented [here](https://docs.djangoproject.com/en/4.0/ref/applications/)<br>
+<br>
+Otherwise, you need to use the whole project as a separate service and redirect to the service from your application.<br>
+[Here](https://realpython.com/django-hosting-on-heroku/) is the guide how to deploy it on heroku.<br>
+<br>
+<br>
+
+Configuration
+-------------
+**Back end part:** <br>
 To integrate bots, you just need to register your bot token. Then change the parameters in *config.py* which contains **TOKEN** (Your telegram bot token), **CHAT_ID** (Telegram volunteer chat id) and **DATABASE_NAME** (The name of your googlesheet file, if you use it as a database).<br>
 <br> 
-**Database:**
+**Database:** <br>
 For adding a database, you need to create a new class that will be inherited from abstract one in CloudDatabase.py. It is also important to understand that the structure of your database should be as follows (sheets and field attributes should match those listed below).<br>
 *Optional:* If you want to use GoogleSheets for this, please follow the instruction from https://docs.gspread.org/en/latest/oauth2.html and change the database name in config.py.
-
+<br>
 <img src = "screenshot1.png" width="900"/> 
 <img src = "screenshot2.png" width=900"/>
 <img src = "screenshot3.png" width="900"/> 
 <img src = "screenshot4.png" width="900"/>
 <img src = "screenshot5.png" width="900"/>
-
+<br>
 Additional information
 -----------------------
 **Linter:**
