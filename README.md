@@ -26,11 +26,12 @@ For [Vue.js](https://betterprogramming.pub/vue-django-using-vue-files-and-the-vu
 For [Angular](https://django-angular.readthedocs.io/en/latest/)<br>
 <br>
 If you are ok with our frontend part, anyway you have to perform some actions to make it work:<br>
+-First, install [Node.js](https://nodejs.org/en/download/)<br>
 -Go to the frontend directory
 ```bash
 cd djangoApp/frontend
 ```
--Install Node.js
+-Install node-modules
 ```bash
 npm install
 ```
@@ -38,6 +39,7 @@ npm install
 ```bash
 npm run build
 ```
+*Our frontend part is already connected to the backend in djangoApp/urls.py*<br>
 <br>
 **Back end part:**
 To integrate bots, you just need to register your bot token. These parameters are configured in the config.by file.<br>
